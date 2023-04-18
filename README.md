@@ -751,3 +751,232 @@ class BinarySearchTest {
 }
 
 ```
+
+### Problem 4 :
+
+### Equivalence Partitioning:
+
+Valid Triangles:
+
+- Three sides are of the same length (Equilateral)
+- Two sides are of the same length (Isosceles)
+- All three sides are of different lengths (Scalene)
+
+Invalid Triangles:
+
+- One side has a length of 0
+- The sum of the lengths of two sides is less than or equal - to the length of the third side
+
+### Equivalence Partitioning Test Cases:
+
+Valid Triangles:
+
+- Equilateral triangle: a=5, b=5, c=5 (expected result: EQUILATERAL)
+- Isosceles triangle: a=4, b=4, c=6 (expected result: ISOSCELES)
+- Scalene triangle: a=3, b=4, c=5 (expected result: SCALENE)
+Invalid Triangles:
+
+Invalid Triangles:
+
+- One side has length 0: a=0, b=2, c=3 (expected result: INVALID)
+- Sum of two sides is less than or equal to third side: a=1, b=1, c=3 (expected result: INVALID)
+- Sum of two sides is equal to third side: a=2, b=2, c=4 (expected result: INVALID)
+
+<table>
+  <tr>
+    <th>Tester Action and Input Data</th>
+    <th>Expected Outcome</th>
+  </tr>
+  <tr>
+    <td>Valid input: a=3, b=3, c=3</td>
+    <td>EQUILATERAL</td>
+  </tr>
+  <tr>
+    <td>Valid input: a=4, b=4, c=5</td>
+    <td>ISOSCELES</td>
+  </tr>
+  <tr>
+    <td>Valid input: a=5, b=4, c=3</td>
+    <td>SCALENE</td>
+  </tr>
+  <tr>
+    <td>Invalid input: a=0, b=0, c=0</td>
+    <td>INVALID</td>
+  </tr>
+  <tr>
+    <td>Invalid input: a=-1, b=2, c=3</td>
+    <td>INVALID</td>
+  </tr>
+  <tr>
+    <td>Valid input: a=1, b=1, c=1</td>
+    <td>EQUILATERAL</td>
+  </tr>
+  <tr>
+    <td>Valid input: a=2, b=2, c=1</td>
+    <td>ISOSCELES</td>
+  </tr>
+  <tr>
+    <td>Valid input: a=3, b=4, c=5</td>
+    <td>SCALENE</td>
+  </tr>
+  <tr>
+    <td>Invalid input: a=0, b=1, c=1</td>
+    <td>INVALID</td>
+  </tr>
+  <tr>
+    <td>Invalid input: a=1, b=0, c=1</td>
+    <td>INVALID</td>
+  </tr>
+  <tr>
+    <td>Invalid input: a=1, b=1, c=0</td>
+    <td>INVALID</td>
+  </tr>
+</table>
+</br>
+
+### Boundary Value Analysis:
+
+For this function, the minimum and maximum values for the sides of a triangle are not relevant. Instead, we need to test the boundaries where the behavior of the function might change.
+
+### Boundary Value Analysis Test Cases:
+
+Valid Triangles:
+
+- Minimum values: a=1, b=1, c=1 (expected result: EQUILATERAL)
+- Maximum values: a=1000, b=1000, c=1000 (expected result: EQUILATERAL)
+- Two sides are equal to the third side: a=2, b=2, c=4 (expected result: INVALID- but a specific error message needs to be printed in this case)
+- Two sides are very close in length: a=5, b=6, c=6 (expected result: ISOSCELES)
+
+Invalid Triangles:
+
+- One side has length 0: a=0, b=2, c=3 (expected result: INVALID)
+- Sum of two sides is less than or equal to third side: a=1, b=1, c=3 (expected result: INVALID)
+- Sum of two sides is equal to third side: a=2, b=2, c=4 (expected result: INVALID)
+- One side is just above the sum of the other two sides: a=4, b=4, c=7 (expected result: INVALID)
+- One side is just below the sum of the other two sides: a=4, b=4, c=7 (expected result: INVALID)
+
+
+<table>
+  <tr>
+    <th>Tester Action and Input Data</th>
+    <th>Expected Outcome</th>
+  </tr>
+  <tr>
+    <td>Invalid inputs: a = 0, b = 0, c = 0</td>
+    <td>INVALID</td>
+  </tr>
+  <tr>
+    <td>Invalid inputs: a + b = c or b + c = a or c + a = b (a=3, b=4, c=8)</td>
+    <td>INVALID</td>
+  </tr>
+  <tr>
+    <td>Equilateral triangles: a = b = c = 1</td>
+    <td>EQUILATERAL</td>
+  </tr>
+  <tr>
+    <td>Equilateral triangles: a = b = c = 100</td>
+    <td>EQUILATERAL</td>
+  </tr>
+  <tr>
+    <td>Isosceles triangles: a = b ≠ c = 10</td>
+    <td>ISOSCELES</td>
+  </tr>
+  <tr>
+    <td>Isosceles triangles: a ≠ b = c = 10</td>
+    <td>ISOSCELES</td>
+  </tr>
+  <tr>
+    <td>Isosceles triangles: a = c ≠ b = 10</td>
+    <td>ISOSCELES</td>
+  </tr>
+  <tr>
+    <td>Scalene triangles: a = b + c - 1</td>
+    <td>SCALENE</td>
+  </tr>
+  <tr>
+    <td>Scalene triangles: b = a + c - 1</td>
+    <td>SCALENE</td>
+  </tr>
+  <tr>
+    <td>Scalene triangles: c = a + b - 1</td>
+    <td>SCALENE</td>
+  </tr>
+  <tr>
+    <td>Maximum values: a, b, c = Integer.MAX_VALUE</td>
+    <td>INVALID</td>
+  </tr>
+  <tr>
+    <td>Minimum values: a, b, c = Integer.MIN_VALUE</td>
+    <td>INVALID</td>
+  </tr>
+</table>
+
+
+#### JUnit test case for the `triangle` function, using the test cases identified in the Equivalence Partitioning and Boundary Value Analysis sections:
+
+```
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class TriangleTest {
+
+    final int EQUILATERAL = 0;
+    final int ISOSCELES = 1;
+    final int SCALENE = 2;
+    final int INVALID = 3;
+    
+    @Test
+    public void testEquivalencePartitioning() {
+        // Valid Triangles
+        assertEquals(EQUILATERAL, triangle(5, 5, 5));
+        assertEquals(ISOSCELES, triangle(4, 4, 6));
+        assertEquals(SCALENE, triangle(3, 4, 5));
+        
+        // Invalid Triangles
+        assertEquals(INVALID, triangle(0, 2, 3));
+        assertEquals(INVALID, triangle(1, 1, 3));
+        assertEquals(INVALID, triangle(2, 2, 4));
+    }
+    
+    @Test
+    public void testBoundaryValueAnalysis() {
+        // Valid Triangles
+        assertEquals(EQUILATERAL, triangle(1, 1, 1));
+        assertEquals(EQUILATERAL, triangle(1000, 1000, 1000));
+        assertEquals(INVALID, triangle(2, 2, 4)); // Two sides are equal to the third side
+        assertEquals(ISOSCELES, triangle(5, 6, 6)); // Two sides are very close in length
+        
+        // Invalid Triangles
+        assertEquals(INVALID, triangle(0, 2, 3));
+        assertEquals(INVALID, triangle(1, 1, 3));
+        assertEquals(INVALID, triangle(2, 2, 4));
+        assertEquals(INVALID, triangle(4, 4, 7)); // One side is just above the sum of the other two sides
+        assertEquals(INVALID, triangle(4, 4, 6)); // One side is just below the sum of the other two sides
+    }
+    
+    // triangle function implementation
+    private int triangle(int a, int b, int c) {
+        if (a >= b+c || b >= a+c || c >= a+b)
+            return(INVALID);
+        if (a == b && b == c)
+            return(EQUILATERAL);
+        if (a == b || a == c || b == c)
+            return(ISOSCELES);
+        return(SCALENE);
+    }
+}
+
+```
+
+These JUnit test cases are used to test a function called `triangle()` that takes in three integer arguments a, b, and c, which represent the side lengths of a triangle, and returns an integer value corresponding to the type of the triangle:
+
+- 0: `EQUILATERAL` for an equilateral triangle (all sides are equal)
+- 1: `ISOSCELES` for an isosceles triangle (two sides are equal)
+- 2: `SCALENE` for a scalene triangle (no sides are equal)
+- 3: `INVALID` for an invalid triangle (the sum of any two sides is less than or equal to the length of the third side)
+
+Note that in the `testEquivalencePartitioning` method, we are only testing the test cases identified using Equivalence Partitioning, while in the `testBoundaryValueAnalysis` method, we are only testing the test cases identified using Boundary Value Analysis. This way, we can ensure that each category of test cases is tested separately.
+
+Each test case within the methods uses the `assertEquals()` method to verify that the expected output value matches the actual output value returned by the `triangle()` function when it is called with the specified input values.
+
+If all the test cases pass, the JUnit test runner will output a message indicating that all the tests were successful. If any test cases fail, the JUnit test runner will output an error message indicating which test case failed and what the expected and actual output values were.
