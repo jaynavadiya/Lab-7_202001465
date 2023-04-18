@@ -178,6 +178,34 @@ public class PreviousDate {
 
 ### Problem 1 :
 
+Here is the modified code for the linearSearch function in Java for the Eclipse IDE:
+
+```
+public class LinearSearch {
+    public static int linearSearch(int v, int[] a) {
+        int i = 0;
+        while (i < a.length) {
+            if (a[i] == v)
+                return i;
+            i++;
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] a = { 1, 2, 3, 4, 5 };
+        int v = 3;
+        int index = linearSearch(v, a);
+        if (index != -1)
+            System.out.println("Value found at index " + index);
+        else
+            System.out.println("Value not found in array");
+    }
+}
+
+```
+
+In this modified code, I have added a main method to test the linearSearch function by creating an array of integers and calling the function to search for a value in the array. The result of the search is printed to the console.
 
 
 ```
