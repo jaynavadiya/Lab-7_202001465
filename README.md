@@ -980,3 +980,157 @@ Note that in the `testEquivalencePartitioning` method, we are only testing the t
 Each test case within the methods uses the `assertEquals()` method to verify that the expected output value matches the actual output value returned by the `triangle()` function when it is called with the specified input values.
 
 If all the test cases pass, the JUnit test runner will output a message indicating that all the tests were successful. If any test cases fail, the JUnit test runner will output an error message indicating which test case failed and what the expected and actual output values were.
+
+### Problem 5 :
+
+### Equivalence Partitioning:
+
+- Valid prefix: "hello" in "hello world", "ab" in "abcde"
+- Invalid prefix: "world" in "hello world", "xyz" in "abcde"
+
+<table>
+  <tr>
+    <th>Tester Action and Input Data</th>
+    <th>Expected Outcome</th>
+  </tr>
+  <tr>
+    <td>Valid Inputs: s1 = "hello", s2 = "hello world"</td>
+    <td>true</td>
+  </tr>
+  <tr>
+    <td>Valid Inputs: s1 = "a", s2 = "abc"</td>
+    <td>true</td>
+  </tr>
+  <tr>
+    <td>Invalid Inputs: s1 = "", s2 = "hello world"</td>
+    <td>false</td>
+  </tr>
+  <tr>
+    <td>Invalid Inputs: s1 = "world", s2 = "hello world"</td>
+    <td>false</td>
+  </tr>
+</table>
+
+### Boundary Value Analysis:
+
+- s1 and s2 are both empty strings: "" and ""
+- s1 is an empty string and s2 is a non-empty string: "" and "hello"
+- s1 is a non-empty string and s2 is an empty string: "hello" and ""
+- s1 and s2 are the same string: "hello" and "hello"
+- s1 is a prefix of s2: "he" in "hello", "abc" in "abcde"
+- s1 is not a prefix of s2: "el" in "hello", "xyz" in "abcde"
+- s1 is longer than s2: "hello" and "hi"
+
+<table>
+  <tr>
+    <th>Tester Action and Input Data</th>
+    <th>Expected Outcome</th>
+  </tr>
+  <tr>
+    <td>s1 = "", s2 = "abc"</td>
+    <td>False</td>
+  </tr>
+  <tr>
+    <td>s1 = "ab", s2 = "abc"</td>
+    <td>True</td>
+  </tr>
+  <tr>
+    <td>s1 = "abc", s2 = "ab"</td>
+    <td>False</td>
+  </tr>
+  <tr>
+    <td>s1 = "a", s2 = "ab"</td>
+    <td>True</td>
+  </tr>
+  <tr>
+    <td>s1 = "aaaaaaaaaaaaaaaaaaaaaa", s2 = "aaaaaaaaaaaaaaaaaaaaaab"</td>
+    <td>True</td>
+  </tr>
+  <tr>
+    <td>s1 = "abc", s2 = "abc"</td>
+    <td>True</td>
+  </tr>
+  <tr>
+    <td>s1 = "a", s2 = "b"</td>
+    <td>False</td>
+  </tr>
+  <tr>
+    <td>s1 = "a", s2 = "a"</td>
+    <td>True</td>
+  </tr>
+  <tr>
+    <td>s1 = "a", s2 = "b"</td>
+    <td>False</td>
+  </tr>
+  <tr>
+    <td>s1 = "a", s2 = " "</td>
+    <td>False</td>
+  </tr>
+</table>
+</br>
+
+### Code implementation and execution of test suite in Eclipse IDE using JUnit Testing Framework:
+
+```
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+public class PrefixTest {
+    
+    @Test
+    public void testEquivalencePartitioning() {
+        // Valid prefix
+        assertTrue(prefix("he", "hello"));
+        assertTrue(prefix("ab", "abcde"));
+        
+        // Invalid prefix
+        assertFalse(prefix("world", "hello world"));
+        assertFalse(prefix("xyz", "abcde"));
+    }
+    
+    @Test
+    public void testBoundaryValueAnalysis() {
+        // Empty strings
+        assertTrue(prefix("", ""));
+        assertFalse(prefix("", "hello"));
+        assertFalse(prefix("hello", ""));
+        
+        // Same strings
+        assertTrue(prefix("hello", "hello"));
+        
+        // Prefixes
+        assertTrue(prefix("he", "hello"));
+        assertTrue(prefix("abc", "abcde"));
+        
+        // Not prefixes
+        assertFalse(prefix("el", "hello"));
+        assertFalse(prefix("xyz", "abcde"));
+        
+        // s1 longer than s2
+        assertFalse(prefix("hello", "hi"));
+    }
+
+    // prefix function implementation
+    public static boolean prefix(String s1, String s2) {
+        if (s1.length() > s2.length()) {
+            return false;
+        }
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1.charAt(i) != s2.charAt(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+```
+
+When executed, the test cases passed, indicating that the implementation of the prefix function is correct.
+
+In case of a test case fails, the output in the Eclipse IDE looks like:
+
+`org.junit.ComparisonFailure: expected:<true> but was:<false>
+`
+
+This message indicates that the assertion comparing the expected result (true) to the actual result (false) has failed.
