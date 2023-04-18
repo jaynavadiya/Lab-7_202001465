@@ -1110,6 +1110,36 @@ If all the test cases pass, the JUnit test runner will output a message indicati
 
 ### Problem 5 :
 
+Here is the modified code for the `prefix` function in Java:
+
+```
+public class Prefix {
+    public static boolean prefix(String s1, String s2) {
+        if (s1.length() > s2.length()) {
+            return false;
+        }
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1.charAt(i) != s2.charAt(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        String s1 = "hello";
+        String s2 = "hello world";
+        if (prefix(s1, s2)) {
+            System.out.println(s1 + " is a prefix of " + s2);
+        } else {
+            System.out.println(s1 + " is not a prefix of " + s2);
+        }
+    }
+}
+```
+
+In this modified code, I have added a main method to test the `prefix` function by calling it with two string parameters. If the `prefix` function returns true, we print a message indicating that the first string is a prefix of the second string; otherwise, we print a message indicating that it is not a prefix.
+
 ### Equivalence Partitioning:
 
 - Valid prefix: "hello" in "hello world", "ab" in "abcde"
