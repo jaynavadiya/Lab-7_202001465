@@ -1134,3 +1134,125 @@ In case of a test case fails, the output in the Eclipse IDE looks like:
 `
 
 This message indicates that the assertion comparing the expected result (true) to the actual result (false) has failed.
+
+### Problem 6 :
+
+[a] Equivalence Classes:
+
+- Class 1: Invalid input (non-positive values)
+- Class 2: Non-triangle (sum of any two sides is less than or equal to the third side)
+- Class 3: Scalene triangle (all three sides have different lengths)
+- Class 4: Isosceles triangle (two sides have the same length)
+- Class 5: Equilateral triangle (all three sides have the same length)
+- Class 6: Right-angled triangle (one angle is a right angle, determined by the Pythagorean theorem)
+
+<table>
+  <tr>
+    <th>Tester Action and Input Data</th>
+    <th>Expected Outcome</th>
+  </tr>
+  <tr>
+    <td>a = -1, b = 2, c = 3</td>
+    <td>Invalid input</td>
+  </tr>
+  <tr>
+    <td>a = 1, b = 1, c = 1</td>
+    <td>Equilateral triangle</td>
+  </tr>
+  <tr>
+    <td>a = 2, b = 2, c = 3</td>
+    <td>Isosceles triangle</td>
+  </tr>
+  <tr>
+    <td>a = 3, b = 4, c = 5</td>
+    <td>Scalene right angled triangle</td>
+  </tr>
+  <tr>
+    <td>a = 3, b = 5, c = 4</td>
+    <td>Scalene right angled triangle</td>
+  </tr>
+  <tr>
+    <td>a = 5, b = 3, c = 4</td>
+    <td>Scalene right angled triangle</td>
+  </tr>
+  <tr>
+    <td>a = 3, b = 4, c = 6</td>
+    <td>Not a triangle</td>
+  </tr>
+</table>
+</br>
+
+[b] Identify test cases to cover the identified equivalence classes. Also, explicitly mention which test case
+would cover which equivalence class.
+
+- Class 1: \
+Test case 1: A = -1, B = 2, C = 3 \
+Test case 2: A = 0, B = 2, C = 3
+- Class 2: \
+Test case 3: A = 1, B = 2, C = 4 \
+Test case 4: A = 2, B = 2, C = 4 \
+- Class 3: \
+Test case 5: A = 3, B = 4, C = 5 \
+Test case 6: A = 5, B = 4, C = 3 \
+- Class 4: \
+Test case 7: A = 2, B = 2, C = 3 \
+Test case 8: A = 4, B = 5, C = 4 \
+- Class 5: \
+Test case 9: A = 3, B = 3, C = 3 \
+- Class 6: \
+Test case 10: A = 3, B = 4, C = 5 \
+Test case 11: A = 6, B = 8, C = 10 \
+
+The class names are written above in `Equivalence Classes` section.
+
+[c] Test cases for the boundary condition A + B > C case (scalene triangle):
+
+Test case 5: A = 3, B = 4, C = 5 \
+Test case 6: A = 5, B = 4, C = 3 \
+Test case 12: A = 1, B = 2, C = 3 (minimum values)
+</br>
+
+[d] Test cases for the boundary condition A = C case (isosceles triangle):
+
+Test case 7: A = 2, B = 2, C = 3 \
+Test case 8: A = 4, B = 5, C = 4 \
+Test case 13: A = 1, B = 1, C = 2 (minimum values) \
+</br>
+
+[e]  Test cases for the boundary condition A = B = C case (equilateral triangle):
+
+Test case 9: A = 3, B = 3, C = 3 \
+Test case 14: A = 1, B = 1, C = 1 (minimum values)
+</br>
+
+[f] Test cases for the boundary condition A^2 + B^2 = C^2 case (right-angled triangle):
+
+Test case 10: A = 3, B = 4, C = 5 \
+Test case 15: A = 3, B = 5, C = 4 (order changed)
+</br>
+
+[g] Test cases for non-triangle case:
+
+Test case 3: A = 1, B = 2, C = 4 \
+Test case 4: A = 2, B = 2, C = 4
+</br>
+
+[h] For non-positive input, identify test points:
+
+Equivalence Class 1: Input values are positive numbers \
+Test Case 1: A = 3, B = 4, C = 5 \
+Test Case 2: A = 2.5, B = 3, C = 4.5 \
+Test Case 3: A = 10, B = 12, C = 15 
+
+Equivalence Class 2: At least one input value is zero \
+Test Case 4: A = 0, B = 4, C = 5 \
+Test Case 5: A = 3, B = 0, C = 5 \
+Test Case 6: A = 3, B = 4, C = 0
+
+Equivalence Class 3: At least one input value is negative \
+Test Case 7: A = -3, B = 4, C = 5 \
+Test Case 8: A = 3, B = -4, C = 5 \
+Test Case 9: A = 3, B = 4, C = -5
+
+Overall, the identified test cases cover all possible equivalence classes and boundary conditions for the triangle classification program.
+</br>
