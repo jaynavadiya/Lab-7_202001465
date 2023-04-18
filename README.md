@@ -404,6 +404,30 @@ Invalid Inputs:
 
 ### Problem 2 :
 
+Here is the modified code for the `countItem` function in Java:
+
+```
+public class CountItem {
+    public static int countItem(int v, int[] a) {
+        int count = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] == v)
+                count++;
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        int[] a = { 1, 2, 3, 4, 5, 3, 3 };
+        int v = 3;
+        int count = countItem(v, a);
+        System.out.println("Value " + v + " appears " + count + " times in array");
+    }
+}
+```
+
+In this modified code, I have added a main method to test the countItem function by creating an array of integers and calling the function to count the number of times a value appears in the array. The result of the count is printed to the console.
+
 ### Equivalence Partitioning:
 
 #### Equivalence Partitioning Test Cases:
@@ -624,6 +648,39 @@ public class CountItemTest {
 
 ### Problem 3 :
 
+Here is the modified code for the `binarySearch` function in Java:
+
+```
+public class BinarySearch {
+    public static int binarySearch(int v, int[] a) {
+        int lo = 0;
+        int hi = a.length - 1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (v == a[mid])
+                return mid;
+            else if (v < a[mid])
+                hi = mid - 1;
+            else
+                lo = mid + 1;
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] a = { 1, 2, 3, 4, 5, 6, 7 };
+        int v = 4;
+        int index = binarySearch(v, a);
+        if (index != -1)
+            System.out.println("Value found at index " + index);
+        else
+            System.out.println("Value not found in array");
+    }
+}
+```
+
+In this modified code, I have added a main method to test the `binarySearch` function by creating an ordered array of integers and calling the function to search for a value in the array. The result of the search is printed to the console. Note that I have also made some modifications to the original code to improve its efficiency and avoid integer overflow when calculating the middle index.
+
 ### Equivalence Partitioning:
 
 - Valid input: `v` is present in `a[]`
@@ -781,6 +838,48 @@ class BinarySearchTest {
 ```
 
 ### Problem 4 :
+
+Here is the modified code for the `triangle` function in Java:
+
+```
+public class Triangle {
+    final static int EQUILATERAL = 0;
+    final static int ISOSCELES = 1;
+    final static int SCALENE = 2;
+    final static int INVALID = 3;
+
+    public static int triangle(int a, int b, int c) {
+        if (a >= b + c || b >= a + c || c >= a + b)
+            return INVALID;
+        if (a == b && b == c)
+            return EQUILATERAL;
+        if (a == b || a == c || b == c)
+            return ISOSCELES;
+        return SCALENE;
+    }
+
+    public static void main(String[] args) {
+        int a = 3, b = 3, c = 3;
+        int type = triangle(a, b, c);
+        switch (type) {
+            case EQUILATERAL:
+                System.out.println("Triangle is equilateral");
+                break;
+            case ISOSCELES:
+                System.out.println("Triangle is isosceles");
+                break;
+            case SCALENE:
+                System.out.println("Triangle is scalene");
+                break;
+            case INVALID:
+                System.out.println("Triangle is invalid");
+                break;
+        }
+    }
+}
+```
+
+In this modified code, I have added a main method to test the `triangle` function by calling it with three integer parameters representing the sides of a triangle. The type of triangle (equilateral, isosceles, scalene, or invalid) is determined by the function and printed to the console using a switch statement. I have also added static final variables to represent the triangle types, which are used in the switch statement.
 
 ### Equivalence Partitioning:
 
