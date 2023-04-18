@@ -594,3 +594,160 @@ public class CountItemTest {
 
 ```
 
+### Problem 3 :
+
+### Equivalence Partitioning:
+
+- Valid input: `v` is present in `a[]`
+- Invalid input: `v` is not present in `a[]`
+
+
+<table>
+  <tr>
+    <th>Tester Action and Input Data</th>
+    <th>Expected Outcome</th>
+  </tr>
+  <tr>
+    <td>v=5, a=[1, 3, 5, 7, 9]</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>v=1, a=[1, 3, 5, 7, 9]</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>v=9, a=[1, 3, 5, 7, 9]</td>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td>v=4, a=[1, 3, 5, 7, 9]</td>
+    <td>-1</td>
+  </tr>
+  <tr>
+    <td>v=11, a=[1, 3, 5, 7, 9]</td>
+    <td>-1</td>
+  </tr>
+</table>
+
+### Boundary Value Analysis:
+
+- Valid input: `v` is the first element in `a[]`
+- Valid input: `v` is the last element in `a[]`
+- Valid input: `v` is in the middle of `a[]`
+- Invalid input: `a[]` is empty
+- Invalid input: `a[]` has only one element which is not `v`
+- Invalid input: `a[]` has only one element which is `v`
+- Invalid input: `v` is less than the first element in `a[]`
+- Invalid input: `v` is greater than the last element in `a[]`
+
+<table>
+  <tr>
+    <th>Tester Action and Input Data</th>
+    <th>Expected Outcome</th>
+  </tr>
+  <tr>
+    <td>v=1, a=[1]</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>v=9, a=[9]</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>v=5, a=[]</td>
+    <td>-1</td>
+  </tr>
+  <tr>
+    <td>v=5, a=[5, 7, 9]</td>
+    <td>0 (smallest element in the array)</td>
+  </tr>
+  <tr>
+    <td>v=5, a=[1, 3, 5]</td>
+    <td>2 (largest element in the array)</td>
+  </tr>
+</table>
+</br>
+
+### Modified Program in Eclipse IDE:
+
+The JUnit test cases for the above identified test cases are as follows:
+
+```
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+class BinarySearchTest {
+    @Test
+    void testValidInputPresent() {
+        int[] a = {1, 3, 5, 7, 9};
+        int v = 5;
+        int expectedIndex = 2;
+        int actualIndex = BinarySearch.binarySearch(v, a);
+        assertEquals(expectedIndex, actualIndex);
+    }
+
+    @Test
+    void testInvalidInputNotPresent() {
+        int[] a = {1, 3, 5, 7, 9};
+        int v = 4;
+        int expectedIndex = -1;
+        int actualIndex = BinarySearch.binarySearch(v, a);
+        assertEquals(expectedIndex, actualIndex);
+    }
+
+    @Test
+    void testValidInputFirstElement() {
+        int[] a = {1, 3, 5, 7, 9};
+        int v = 1;
+        int expectedIndex = 0;
+        int actualIndex = BinarySearch.binarySearch(v, a);
+        assertEquals(expectedIndex, actualIndex);
+    }
+
+    @Test
+    void testValidInputLastElement() {
+        int[] a = {1, 3, 5, 7, 9};
+        int v = 9;
+        int expectedIndex = 4;
+        int actualIndex = BinarySearch.binarySearch(v, a);
+        assertEquals(expectedIndex, actualIndex);
+    }
+
+    @Test
+    void testValidInputMiddleElement() {
+        int[] a = {1, 3, 5, 7, 9};
+        int v = 3;
+        int expectedIndex = 1;
+        int actualIndex = BinarySearch.binarySearch(v, a);
+        assertEquals(expectedIndex, actualIndex);
+    }
+
+    @Test
+    void testInvalidInputEmptyArray() {
+        int[] a = {};
+        int v = 5;
+        int expectedIndex = -1;
+        int actualIndex = BinarySearch.binarySearch(v, a);
+        assertEquals(expectedIndex, actualIndex);
+    }
+
+    @Test
+    void testInvalidInputOneElementNotV() {
+        int[] a = {2};
+        int v = 1;
+        int expectedIndex = -1;
+        int actualIndex = BinarySearch.binarySearch(v, a);
+        assertEquals(expectedIndex, actualIndex);
+    }
+
+    @Test
+    void testInvalidInputOneElementIsV() {
+        int[] a = {1};
+        int v = 1;
+        int expectedIndex = 0;
+        int actualIndex = BinarySearch.binarySearch(v, a);
+        assertEquals(expectedIndex, actualIndex);
+    }
+}
+
+```
